@@ -12,10 +12,10 @@ $user_name = filter_input(INPUT_POST, 'user_name', FILTER_SANITIZE_STRING);
 $user_id = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_STRING);
 
 //get it from from slash command configuration in Slack.
-if ($token !== "4f8uLdSjrKGQX4A8uXwsmZms") {
-    http_response_code(403);
-    exit;
-}
+// if ($token !== "4f8uLdSjrKGQX4A8uXwsmZms") {
+//     http_response_code(403);
+//     exit;
+// }
 
 //create slack webhook and paste its url here.
 //$slack_webhook_url = "https://hooks.slack.com/services/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";
@@ -59,7 +59,7 @@ if ($token !== "4f8uLdSjrKGQX4A8uXwsmZms") {
         "channel" => $channel_id,
         "text" => $message_text,
         "mrkdwn" => true,
-        "icon_url" => $icon_url
+        //"icon_url" => $icon_url
     );
 
         //magically converts it to json ;)
