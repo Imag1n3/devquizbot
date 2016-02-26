@@ -47,7 +47,7 @@ $slack_webhook_url = "https://hooks.slack.com/services/T02JCLRNK/B0PA12LCE/7MzeH
 //     $posts = $result->liked_posts;
 //     $index = rand(0,(count($posts)-1));
 
-     $message_text = "<Здравей @".$text."> призовавам те на Quiz дуел! Ако имаш играта цъкни тук (devquiz://play). Ако я нямаш, свали я от тук(https://www.dropbox.com/s/hsn6ow3b8lqt9u1/app-debug.apk?dl=0).\n";
+     $message_text = "<Здравей ".$text."> призовавам те на Quiz дуел! Ако имаш играта цъкни тук (devquiz://play). Ако я нямаш, свали я от тук(https://www.dropbox.com/s/hsn6ow3b8lqt9u1/app-debug.apk?dl=0).\n";
      //$message_text .= $posts[$index]->photos[0]->alt_sizes[0]->url;
 
         //TO HERE: is the Tumblr stuff. You can change it with whatever your slash command should do.
