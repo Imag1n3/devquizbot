@@ -12,50 +12,50 @@ $user_name = filter_input(INPUT_POST, 'user_name', FILTER_SANITIZE_STRING);
 $user_id = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_STRING);
 
 //get it from from slash command configuration in Slack.
-if ($token !== "x76nr9YT0islfv6AdPzVxoeG") {
+if ($token !== "4f8uLdSjrKGQX4A8uXwsmZms") {
     http_response_code(403);
     exit;
 }
 
 //create slack webhook and paste its url here.
-$slack_webhook_url = "https://hooks.slack.com/services/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";
+//$slack_webhook_url = "https://hooks.slack.com/services/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";
 
 //this is bojinkata's beautiful head.
-$icon_url = "http://www4.pictures.zimbio.com/gi/AC+Chievo+Verona+v+Lecce+Serie+DuNWqy4FrZDm.jpg";
+//$icon_url = "http://www4.pictures.zimbio.com/gi/AC+Chievo+Verona+v+Lecce+Serie+DuNWqy4FrZDm.jpg";
 
-//this script can be used for more than one slash commands that's why I use switch. I will add more shit later.
-switch ($command) {
-    case '/quiz':{
-        //FROM HERE: it's tumblr specific stuff for getting image. Don't steal my ACCESS_TOKENS ;)
-    $limit = 50;
-    $client = new Tumblr\API\Client(
-          '5WKMJM2Ya3guPDm3Qt0ixS99ZM4Zuy2sSRbdltL0sNrHJ5NFDC',
-          'oTa3cFlF60ApnXNfigocmnBBtoyd5QACyt2x9TDI18EsId1ZSR',
-          'Z3G2F6vEbuMB82V3lmlg820tp2w70LKGij81sJLLUhoBXVeoGL',
-          'rRwiHDlbJZH8WNcRX2rM1HEJbM2cbsqbXYCKu9FhpxxKrzqEby'
-    );
+// //this script can be used for more than one slash commands that's why I use switch. I will add more shit later.
+// switch ($command) {
+//     case '/quiz':{
+//         //FROM HERE: it's tumblr specific stuff for getting image. Don't steal my ACCESS_TOKENS ;)
+//     $limit = 50;
+//     $client = new Tumblr\API\Client(
+//           '5WKMJM2Ya3guPDm3Qt0ixS99ZM4Zuy2sSRbdltL0sNrHJ5NFDC',
+//           'oTa3cFlF60ApnXNfigocmnBBtoyd5QACyt2x9TDI18EsId1ZSR',
+//           'Z3G2F6vEbuMB82V3lmlg820tp2w70LKGij81sJLLUhoBXVeoGL',
+//           'rRwiHDlbJZH8WNcRX2rM1HEJbM2cbsqbXYCKu9FhpxxKrzqEby'
+//     );
 
-    $offset = rand(0, (($client->getUserInfo()->user->likes-1)-$limit));
+//     $offset = rand(0, (($client->getUserInfo()->user->likes-1)-$limit));
 
-    $result = $client->getLikedPosts(
-        array(
-            'limit' => $limit,
-            'offset' => $offset
-        )
-    );
+//     $result = $client->getLikedPosts(
+//         array(
+//             'limit' => $limit,
+//             'offset' => $offset
+//         )
+//     );
 
-    $posts = $result->liked_posts;
-    $index = rand(0,(count($posts)-1));
+//     $posts = $result->liked_posts;
+//     $index = rand(0,(count($posts)-1));
 
-    $message_text = "<@".$user_id."|".$user_name."> разпечата 1 билет!\n";
-    $message_text .= $posts[$index]->photos[0]->alt_sizes[0]->url;
+     $message_text = "<Здравей @".$user_id."|".$user_name."> призовавам те на Quiz дуел! Ако имаш играта цъкни тук (devquiz://play). Ако я нямаш, свали я от тук(https://www.dropbox.com/s/hsn6ow3b8lqt9u1/app-debug.apk?dl=0).\n";
+     //$message_text .= $posts[$index]->photos[0]->alt_sizes[0]->url;
 
         //TO HERE: is the Tumblr stuff. You can change it with whatever your slash command should do.
 
 
         //Here's the tricky part. This array holds the response that is sent to the webhook, which posts it as a Slack bot. In this case I'm sending Bot's name, icon, the channel I want to post in, the message and if I use markdown syntax in my text or not.
     $data = array(
-        "username" => "Bojinkata",
+        "username" => "DevQuizBot",
         "channel" => $channel_id,
         "text" => $message_text,
         "mrkdwn" => true,
@@ -79,7 +79,7 @@ switch ($command) {
     curl_close($slack_call);
 
         //This is not required, but it's essential for Slack's slash command, because it's the response that you get when executing it. In my case I want to greet the guy who printed a ticket to Belgrad!
-    echo "Така ве!";
+    //echo "Така ве!";
     die;
   };
   break;
