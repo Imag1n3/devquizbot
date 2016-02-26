@@ -1,7 +1,7 @@
 <?php
 
 //I'm using composer for loading Tumblr SDK.
-require "vendor/autoload.php";
+//require "vendor/autoload.php";
 
 //Get all slack params sent with slash command.
 $token = filter_input(INPUT_POST, 'token', FILTER_SANITIZE_STRING);
@@ -80,7 +80,7 @@ if ($token !== "4f8uLdSjrKGQX4A8uXwsmZms") {
 
         //This is not required, but it's essential for Slack's slash command, because it's the response that you get when executing it. In my case I want to greet the guy who printed a ticket to Belgrad!
     //echo "Така ве!";
-    die;
-  };
-  break;
-}
+    //die;
+  // };
+  // break;
+// }
